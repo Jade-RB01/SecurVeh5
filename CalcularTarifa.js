@@ -1,5 +1,7 @@
+// Función que calcula la tarifa de guardianía para un vehículo
+// Parámetros: datos del cliente, marca, placa, tipo de vehículo y las horas
 function CalcularTarifa(nombreCliente, apellidosCliente, marcaVehiculo, modeloVehiculo, placaVehiculo, tipoVehiculo, horas) {
-    // Definir tarifas por hora según el tipo de vehículo
+    // Define las tarifas por hora para cada tipo de vehículo
     const tarifas = {
         "Vehículos menores sin motor": 3.00,
         "Vehículos menores con motor": 4.50,
@@ -7,23 +9,23 @@ function CalcularTarifa(nombreCliente, apellidosCliente, marcaVehiculo, modeloVe
         "Vehículos mayores 4,6 ejes": 10.00
     };
 
-    // Validar tipo de vehículo
+    // Valida si el tipo de vehículo existe en las tarifas
     if (!tarifas.hasOwnProperty(tipoVehiculo)) {
         return "Error: Tipo de vehículo no válido";
     }
 
-    // Validar horas
+    // Valida si las horas son un número entero positivo
     if (horas <= 0 || !Number.isInteger(horas)) {
         return "Error: Las horas deben ser un número entero positivo";
     }
 
-    // Calcular costos
+    // Calcula el costo: tarifa por hora * horas
     const tarifaHora = tarifas[tipoVehiculo];
     const subtotal = tarifaHora * horas;
     const igv = subtotal * 0.18; // IGV del 18%
-    const total = subtotal + igv;
+    const total = subtotal + igv; // Total incluye IGV
 
-    // Formatear el resultado
+    // Formatear el resultado para exportarlo como boleta.
     const resultado = `
 Detalle del Servicio de Guardianía - SecurVeh
 Cliente: ${nombreCliente} ${apellidosCliente}
@@ -36,7 +38,8 @@ Subtotal: S/ ${subtotal.toFixed(2)}
 IGV (18%): S/ ${igv.toFixed(2)}
 Total a pagar: S/ ${total.toFixed(2)}
     `;
+    // Devuelve la cadena para que main.js la imprima
     return resultado;
 }
-
+// Exporta la función como módulo para su uso en EjecucionTarifa.js
 module.exports = { CalcularTarifa };
