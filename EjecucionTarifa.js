@@ -69,8 +69,8 @@ function ejecutarFlujo() {
               // '!isNaN' es usado para comprobar si el valor no es un número retorna un false volviendo a preguntar
               return !isNaN(num) && num > 0 && Number.isInteger(num);
             }, (horas) => {
-              // Calcula y muestra la tarifa, pasando '' como modelo
-              console.log(CalcularTarifa(nombres, apellidos, marca, '', placa, tiposVehiculos[tipoIndex], parseInt(horas)));
+              // Calcula y muestra la tarifa
+              console.log(CalcularTarifa(nombres, apellidos, marca, placa, tiposVehiculos[tipoIndex], parseInt(horas)));
               console.log('=== Fin ===');
               rl.close(); // Cierra la interfaz al finalizar
             });
